@@ -305,19 +305,19 @@
         <div class="saveClose"></div>
         <div class="userID">UserID: Loading...</div>
       </div>
-      <div class="currentUserTitle">当前使用：</div>
+      <div class="currentUserTitle">Save in use：</div>
       <div class="currentUserName">Loading...</div>
       <div class="saveUpdate">
-        <div class="saveUpdateText">本存档 上传到云</div>
+        <div class="saveUpdateText">Upload to Cloud</div>
       </div>
       <div class="saveTableContent">
         <table class="saveTableTH">
           <tr>
-            <th class="tb1">状态</th>
-            <th class="tb2">编号</th>
-            <th class="tb3">备注名</th>
-            <th class="tb4">最后保存的时间</th>
-            <th class="tb5">操作</th>
+            <th class="tb1">State</th>
+            <th class="tb2">NO</th>
+            <th class="tb3">SaveName</th>
+            <th class="tb4">LastSave</th>
+            <th class="tb5">Setting</th>
           </tr>
         </table>
         <div class="saveTableDiv">
@@ -331,7 +331,7 @@
                   font-size: 50px;
                 "
               >
-                读取中。。。
+                Loading...
               </p>
             </tr>
           </table>
@@ -367,7 +367,7 @@
         var fileID = that.attr('data')
         window.parent.isCopy = true
         const seletedRow = parent.user_files.find((i) => i.id === fileID)
-        window.parent.addGistFile(seletedRow.description + '副本', (res) => {
+        window.parent.addGistFile(seletedRow.description + 'Copy', (res) => {
           window.parent.isCopy = false
         })
       }
@@ -387,7 +387,7 @@
         'message',
         function (event) {
           if (event.data.message == 'refreshGistList') {
-            $('.currentUserName').html('未选择云存档')
+            $('.currentUserName').html('Not selected')
             $('.saveUpdate').unbind() //取消上传按钮事件绑定
             $('.saveUpdate').click(function () {
               window.parent.addGistFile()
@@ -462,7 +462,7 @@
                     <td class="tb2" style="opacity: 0;">0</td>
                     <td class="tb3">
                         <div class="saveTableNameContent">
-                            <div class="saveTableName" onclick="saveTabelNew()">+ 新建存档</div>
+                            <div class="saveTableName" onclick="saveTabelNew()">+ NewSave</div>
                         </div>
                     </td>
                     <td class="tb4" style="opacity: 0;"></td>

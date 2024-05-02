@@ -35,11 +35,11 @@ L.control
   .attribution({
     prefix: `
       <footer role='contentinfo' class='footer'>
-        <a href='/docs/disclaimer.html' target='_blank' title='空荧酒馆免责声明'>免责声明</a>
-        <a href='/join' target='_blank' target='_blank' title='加入我们'>招募</a>
-        <a href='https://support.qq.com/products/321980/blog/505810' target='_blank' rel='noopener noreferrer' title='空荧酒馆原神地图更新日志'>更新日志</a>
-        <a href='https://github.com/kongying-tavern' target='_blank' rel='noopener noreferrer' title='GitHub'>GitHub</a>
-        <a href='http://beian.miit.gov.cn' target='_blank' rel='noopener noreferrer' title='工业和信息化部域名信息备案管理系统'>蜀ICP备2020028219号-1</a>
+        <a href='/docs/disclaimer.html' target='_blank'>Disclaimer</a>
+        <a href='/join' target='_blank'>Join Us</a>
+        <a href='https://bbs.mihoyo.com/ys/article/1328298' target='_blank' rel="noopener noreferrer">Instructions Use</a>
+        <a href='https://support.qq.com/products/321980/blog/505810' target='_blank' rel='noopener noreferrer'>Update Log</a>
+        <a href='https://github.com/kongying-tavern' target='_blank' rel='noopener noreferrer'>GitHub</a>
       </footer>
 		`,
     position: 'bottomleft',
@@ -2514,13 +2514,13 @@ function MarkPoint(element) {
     that.addClass('myPopSwitchDone')
     that.removeClass('myPopSwitchTodo')
     setTimeout(function () {
-      that.find('.switchButton p').html('已完成')
+      that.find('.switchButton p').html('DONE')
     }, 100)
   } else {
     that.addClass('myPopSwitchTodo')
     that.removeClass('myPopSwitchDone')
     setTimeout(function () {
-      that.find('.switchButton p').html('未完成')
+      that.find('.switchButton p').html('TODO')
     }, 100)
   }
   setTimeout(function () {
@@ -2776,7 +2776,7 @@ function dealIcon(target, key) {
 // }).addTo(map);
 var JS_MEDIA_LIST1 = {}
 $.getJSON(
-  'https://yuanshen.site/HotUpdate/POI_JSON_New/item_media_path.json',
+  '/yuanshen.site/HotUpdate/POI_JSON_New/item_media_path.json',
   function (data) {
     JS_MEDIA_LIST1 = data
   }
@@ -2799,7 +2799,7 @@ map.on('popupopen', function (e) {
   var key = className.substring(5, className.length)
   var markedFlag = localStorage.getItem(key)
   var switchClass = !markedFlag ? 'myPopSwitchTodo' : 'myPopSwitchDone'
-  var switchText = !markedFlag ? '未完成' : '已完成'
+  var switchText = !markedFlag ? 'TODO' : 'DONE'
   var videoUrl = JS_MEDIA_LIST1[key] || ''
   var videoClass = videoUrl ? 'hasVideo' : ''
   const timeValue = localStorage.getItem('done_time_' + key)
@@ -2827,8 +2827,8 @@ map.on('popupopen', function (e) {
 			<span class="videoTip">点击查看点位视频</span>
 		</div>
 		<div class="${switchClass}" onclick="MarkPoint(this)" data-key="${key}">
-			<p class="switchOff">未完成</p>
-			<p class="switchOn">已完成</p>
+			<p class="switchOff">TODO</p>
+			<p class="switchOn">DONE</p>
 			<div class="switchButton">
 				<div class="switchButtonIcon">
 					<p>${switchText}</p>

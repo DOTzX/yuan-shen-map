@@ -4,7 +4,7 @@
   "author": "Kongying Tavern",
   "license": "MulanPSL-1.0",
   "scripts": {
-    "dev": "npx http-server Yuanshenditu -p 0 -c 0",
+    "dev": "node main.js",
     "envinfo": "npx envinfo --npmPackages  --system --browsers --binaries --duplicates",
     "commit": "npx git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -56,6 +56,8 @@
     "node-fetch": "latest",
     "husky": "7.0.1",
     "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "express": "^4.19.2",
+    "express-http-to-https": "^1.1.4"
   }
 }

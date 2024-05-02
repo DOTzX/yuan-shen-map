@@ -3,7 +3,7 @@ var JS_Item = {
   features: [],
 }
 // var originJsonArr = []
-let url = 'https://yuanshen.site/item/marker/queryAll'
+let url = '/yuanshen.site/item/marker.json'
 const originalMapSize = [8192, 8192];
 const centerOffsetFromLeftTop = [3568, 6286];
 
@@ -15,7 +15,7 @@ function project(lat, lng) {
   ];
 }
 let success = function (res) {
-  console.log(res);
+  // console.log(res);
   for (var i = 0; i < res.data.list.length; i++) {
     var item = res.data.list[i];
     var markerX = item.xy.split(',')[0];
@@ -36,27 +36,29 @@ let success = function (res) {
       "id": item.id
     };
     if (JS_array[item.layerId] == undefined) {
-      JS_array[item.layerId] = JSON.parse(JSON.stringify(JS_Item))
-    };
+      JS_array[item.layerId] = JSON.parse(JSON.stringify(JS_Item));
+    }
     JS_array[item.layerId].features.push(markerInfo);
   }
   // for (var i = 0; i < originJsonArr.length; i++) {
   //   if (originJsonArr[i] != null) JS_array[i].features = originJsonArr[i].features;
   //   else JS_array[i].features = []
   // }
-}
+};
 // eslint-disable-next-line no-unused-vars
-let err = function (msg) {
-  alert(msg)
-}
 $.ajax({
+  method: "GET",
+  crossDomain: true,
+  dataType: 'json',
+  headers: {
+    accept: 'application/json',
+  },
   async: false,
-  type: 'POST',
   url: url,
   success: success,
   contentType: 'application/json;charset=UTF-8',
-  error: function (result) {
-    console.log(result);
-  }
 })
+.fail(function(xhr, status, error) {
+    console.error(error);
+});
 // Sun Jan 02 2022 00:46:36 GMT+0000 (Coordinated Universal Time)
