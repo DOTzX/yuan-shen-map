@@ -2991,10 +2991,10 @@ function countMarkedLayer() {
     let count = getCountStartsWith(i);
     let key = ".Layer_"+typearray[i][3];
     $(key).html($(key).html() + " ("+count+")");
-    if (count > 0) haver.push($(key).text().replace(/\s+/g, ' ').trim());
+    if (count > 0) haver.push($(key).text().replace(/\s+/g, ' ').trim() + " ID: " + i);
   }
   // navigator.clipboard.writeText(haver.join("\n"));
   // alert("text copied");
 }
 
-countMarkedLayer();
+// countMarkedLayer();
