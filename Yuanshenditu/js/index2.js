@@ -2973,3 +2973,28 @@ $('.myPopComment').click(function (event) {
 })
 
 updatePointTime()
+
+function getCountStartsWith(str_start) {
+  let matchingItems = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (key.startsWith(str_start + "_")) {
+          matchingItems += 1;
+      }
+  }
+  return matchingItems;
+}
+
+function countMarkedLayer() {
+  let haver = [];
+  for (let i = 0; i < typearray.length; i++) {
+    let count = getCountStartsWith(i);
+    let key = ".Layer_"+typearray[i][3];
+    $(key).html($(key).html() + " ("+count+")");
+    if (count > 0) haver.push($(key).text().replace(/\s+/g, ' ').trim());
+  }
+  // navigator.clipboard.writeText(haver.join("\n"));
+  // alert("text copied");
+}
+
+countMarkedLayer();
